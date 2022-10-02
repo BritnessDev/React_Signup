@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { Container, Row, Col, Button, Form, FloatingLabel} from 'react-bootstrap';
 import { AiOutlineEye } from 'react-icons/ai';
@@ -9,7 +9,7 @@ const App = () => {
   const [validated, setValidated] = useState(false);
   const [checkEmail, setCheckEmail] = useState(false);
   const [fsValue, setFsValue] = useState('');
-  const [code, setCode] = useState('');
+  // const [code, setCode] = useState('');
 
 
   const selFsValue = (val) => {
