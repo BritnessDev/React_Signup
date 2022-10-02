@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { Container, Row, Col, Button, Form, FloatingLabel} from 'react-bootstrap';
 import { AiOutlineEye } from 'react-icons/ai';
@@ -9,6 +9,8 @@ const App = () => {
   const [validated, setValidated] = useState(false);
   const [checkEmail, setCheckEmail] = useState(false);
   const [fsValue, setFsValue] = useState('');
+  const [code, setCode] = useState('');
+
 
   const selFsValue = (val) => {
     setFsValue(val);
@@ -65,6 +67,44 @@ const App = () => {
       x.type = "password";
       show_eye.style.display = "block";
       hide_eye.style.display = "none";
+    }
+  }
+
+  const nextstep = (e) => {
+    e.preventDefault();
+    if((e.key >= 0 && e.key <= 9) || e.key === "Backspace"){
+      if(e.key === "Backspace"){
+        e.target.value = '';
+      }else{  
+        e.target.value = e.key;
+      }
+      var target = e.srcElement || e.target;
+      var myLength = target.value.length;
+      
+      if (myLength >= 1) {
+        
+          var next = target;
+          while (next = next.nextElementSibling) {
+              if (next == null)
+                  break;
+              if (next.tagName.toLowerCase() === "input") {
+                  next.focus();
+                  break;
+              }
+          }
+      }
+      // Move to previous field if empty (user pressed backspace)
+      else if (myLength === 0) {
+          var previous = target;
+          while (previous = previous.previousElementSibling) {
+              if (previous == null)
+                  break;
+              if (previous.tagName.toLowerCase() === "input") {
+                  previous.focus();
+                  break;
+              }
+          }
+      }
     }
   }
 
@@ -166,7 +206,7 @@ const App = () => {
                         <span  id="rule_red">Upper Case</span>, <span id='rule_green'>Numeric</span>, <br/> and <span id='rule_green'>8 digits</span></p>
                       </Row>
                       <Row>
-                      <div class="floating-form">
+                      <div className="floating-form">
                         <div className="floating-label labeldisactive" id='select_tag'>
                           <select className="floating-select" value={fsValue} onChange={onChangeSelect}>
                             <option value=""></option>
@@ -230,49 +270,38 @@ const App = () => {
                     </div>
                     <Form noValidate validated={validated} onSubmit={handleSubmit} className="form_container">
                       
-                      <Row className='verinum_container'>
-                        <Col lg={2}>
+                      <Row className='verinum_container' onKeyDown={nextstep}>
                           <Form.Control
                               type="text"
                               name="firstname"
                               required
                             />
-                        </Col>
-                        <Col lg={2}>
+                        
                           <Form.Control
                               type="text"
                               name="firstname"
                               required
                             />
-                        </Col>
-                        <Col lg={2}>
                           <Form.Control
                               type="text"
                               name="firstname"
                               required
                             />
-                        </Col>
-                        <Col lg={2}>
                           <Form.Control
                               type="text"
                               name="firstname"
                               required
                             />
-                        </Col>
-                        <Col lg={2}>
                           <Form.Control
                               type="text"
                               name="firstname"
                               required
                             />
-                        </Col>
-                        <Col lg={2}>
                           <Form.Control
                               type="text"
                               name="firstname"
                               required
                             />
-                        </Col>
                       </Row>
                       
                       <Row lg={12} className="btn_veri_submit">

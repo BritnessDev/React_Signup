@@ -301,7 +301,7 @@
 }
 
 .verinum_container {
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -441,4 +441,9 @@
 
 .floating-select option {
   height: 48px !important;
+}
+
+.verinum_container input{
+  width: 40px;
+  text-align: center;
 }
