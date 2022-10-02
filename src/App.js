@@ -84,7 +84,7 @@ const App = () => {
       if (myLength >= 1) {
         
           var next = target;
-          while (next = next.nextElementSibling) {
+          while (next = target.nextElementSibling) {
               if (next == null)
                   break;
               if (next.tagName.toLowerCase() === "input") {
@@ -96,7 +96,7 @@ const App = () => {
       // Move to previous field if empty (user pressed backspace)
       else if (myLength === 0) {
           var previous = target;
-          while (previous = previous.previousElementSibling) {
+          while (previous = target.previousElementSibling) {
               if (previous == null)
                   break;
               if (previous.tagName.toLowerCase() === "input") {
