@@ -370,17 +370,17 @@
   color: #5264AE;
 }
 
-.floating-select:not([value=""]):valid~label {
+/* .floating-select:not([value=""]):invalid~label {
   top: -18px;
   font-size: 14px;
   color: #5264AE;
-}
+} */
 
-.labelactive label{
+/* .labelactive label{
   top: -18px;
   font-size: 14px;
   color: #5264AE;
-}
+} */
 
 .labeldisactive label{
   font-size: 14px;
@@ -436,5 +436,9 @@
 }
 
 #select_tag option{
+  height: 48px !important;
+}
+
+.floating-select option {
   height: 48px !important;
 }

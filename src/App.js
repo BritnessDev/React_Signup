@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import BootstrapSelect from 'react-bootstrap-select-dropdown'
-import { Container, Row, Col, Image, Button, Card, Form, FloatingLabel, InputGroup } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Container, Row, Col, Button, Form, FloatingLabel} from 'react-bootstrap';
 import { AiOutlineEye } from 'react-icons/ai';
 import { RiEyeCloseLine } from 'react-icons/ri';
 
@@ -17,16 +14,6 @@ const App = () => {
     setFsValue(val);
   }
 
-  const options = [
-    {
-      "labelKey": "optionItem1",
-      "value": "Option item 1"
-    },
-    {
-      "labelKey": "optionItem2",
-      "value": "Option item 2"
-    }
-  ]
   const handleSubmit = (event) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -37,10 +24,15 @@ const App = () => {
     setValidated(true);
   };
 
-  const handleChange = (selectedOptions) => {
-    console.log(selectedOptions);
+  const onChangeSelect = (event) => {
+    selFsValue(event.target.value);
+    if(event.target.value !== "")
+      // .labeldisactive label
+      document.getElementById("selectOption").style.top = "-18px";
+    else
+      document.getElementById("selectOption").style.top = "0px";
+    
   }
-
   const password_show_hide = () => {
     console.log('fdsa');
     var x = document.getElementById("password");
@@ -176,7 +168,7 @@ const App = () => {
                       <Row>
                       <div class="floating-form">
                         <div className="floating-label labeldisactive" id='select_tag'>
-                          <select className="floating-select" value={fsValue} onChange={e=>selFsValue(e.target.value)}>
+                          <select className="floating-select" value={fsValue} onChange={onChangeSelect}>
                             <option value=""></option>
                             <option value="1">Option one Selected1</option>
                             <option value="2">Option one Selected2</option>
@@ -184,7 +176,7 @@ const App = () => {
                             <option value="4">Option one Selected4</option>
                             <option value="5">Option one Selected5</option>
                           </select>
-                          <label>Select the option</label>
+                          <label id="selectOption">Select the option</label>
                         </div>
                         </div>
                       </Row>
@@ -204,7 +196,7 @@ const App = () => {
                         </Col>
                       </Row>
                       <Row lg={12} className="btn_submit">
-                        <Button type="submit">Sign Up</Button>  
+                        <Button type="submit" onClick={() => {setCheckEmail(true)}}>Sign Up</Button>  
                       </Row>
                       
                     </Form>
