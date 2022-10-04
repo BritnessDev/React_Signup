@@ -4,12 +4,15 @@ import { Container, Row, Col, Button, Form, FloatingLabel} from 'react-bootstrap
 import { AiOutlineEye } from 'react-icons/ai';
 import { RiEyeCloseLine } from 'react-icons/ri';
 
+import * as EmailValidator from 'email-validator';
+
 const App = () => {
 
   const [validated, setValidated] = useState(false);
   const [checkEmail, setCheckEmail] = useState(false);
   const [fsValue, setFsValue] = useState('');
-  // const [code, setCode] = useState('');
+  const [email, setEmail] = useState('');
+  const [errorEmail, setErrorEmail] = useState(false);
 
 
   const selFsValue = (val) => {
@@ -68,6 +71,11 @@ const App = () => {
       show_eye.style.display = "block";
       hide_eye.style.display = "none";
     }
+  }
+
+  const setUserEmail = (val) => {
+    setEmail(val);
+    setErrorEmail(!EmailValidator.validate(val));
   }
 
   const nextstep = (e) => {
@@ -162,18 +170,19 @@ const App = () => {
                           </Form.Control.Feedback>
                         </FloatingLabel>
                       </Row>
-                      <Row className="mb-3" id="row_email">
-                        <FloatingLabel className='CNLabel' as={Col} md="12" controlId="emailaddress" label="Email Address">
-                          <Form.Control
-                            required
-                            type="text"
-                            placeholder="Email Address"
-                          />
-                          <Form.Control.Feedback type="invalid">
-                            Please provide a valid city.
-                          </Form.Control.Feedback>
-                        </FloatingLabel>
-                      </Row>
+                      <FloatingLabel className='CNLabel' id="email" as={Col} md="12" controlId="emailaddress" label="Email Address">
+                        <Form.Control
+                          required
+                          type="text"
+                          placeholder="Email Address"
+                          value={email}
+                          onChange={e => setUserEmail(e.target.value)}
+                          isInvalid={errorEmail}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                          Please provide a valid email.
+                        </Form.Control.Feedback>
+                      </FloatingLabel>
                       <Form.Group>
                         <Row className="mb-3" id='row_password'>
                           <FloatingLabel className='CNLabel' as={Col} md="6" controlId="password" label="Password">
@@ -206,21 +215,21 @@ const App = () => {
                       </Form.Group>
                       <Row className='mb-3' id='parent_rule_password'>
                         <p id='row_rule_password'>The password must contain <span id="rule_green">Special character</span>, 
-                        <span  id="rule_red">Upper Case</span>, <span id='rule_green'>Numeric</span>, <br/> and <span id='rule_green'>8 digits</span></p>
+                        <span  id="rule_red">Upper Case</span>, <span id='rule_green'>Numeric</span> and <span id='rule_green'>8 digits</span></p>
                       </Row>
                       <Row>
-                      <div className="floating-form">
-                        <div className="floating-label labeldisactive" id='select_tag'>
-                          <select className="floating-select" value={fsValue} onChange={onChangeSelect}>
-                            <option value=""></option>
-                            <option value="1">Option one Selected1</option>
-                            <option value="2">Option one Selected2</option>
-                            <option value="3">Option one Selected3</option>
-                            <option value="4">Option one Selected4</option>
-                            <option value="5">Option one Selected5</option>
-                          </select>
-                          <label id="selectOption">Select the option</label>
-                        </div>
+                        <div className="floating-form">
+                          <div className="floating-label labeldisactive" id='select_tag'>
+                            <select className="floating-select" value={fsValue} onChange={onChangeSelect}>
+                              <option value=""></option>
+                              <option value="1">Option one Selected1</option>
+                              <option value="2">Option one Selected2</option>
+                              <option value="3">Option one Selected3</option>
+                              <option value="4">Option one Selected4</option>
+                              <option value="5">Option one Selected5</option>
+                            </select>
+                            <label id="selectOption">Select the option</label>
+                          </div>
                         </div>
                       </Row>
                       
@@ -239,7 +248,7 @@ const App = () => {
                         </Col>
                       </Row>
                       <Row lg={12} className="btn_submit">
-                        <Button type="submit" onClick={() => {setCheckEmail(true)}}>Sign Up</Button>  
+                        <Button type="submit" className='btn_signup' onClick={() => {setCheckEmail(true)}}>Sign Up</Button>  
                       </Row>
                       
                     </Form>

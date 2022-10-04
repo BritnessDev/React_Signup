@@ -103,6 +103,7 @@
 
 .CNLabel{
   color: #2B2B2B;
+  margin-bottom: 18px;
 }
 
 .CNLabel input {
@@ -159,16 +160,16 @@
 
 .invalid-feedback {
   font-size: 10px !important;
+  color: #FF5630 !important;
 }
 
 #row_name {
-  margin-bottom: 6px !important;
+  /* margin-bottom: 6px !important; */
 }
 
-#row_email {
-  margin-bottom: 28px !important;
+#email label{
+  margin: 0;
 }
-
 
 #row_rule_password {
   margin: 8px 0 0 0 !important;
@@ -211,6 +212,8 @@
 .form-check-input {
   width: 25px !important;
   height: 25px !important;
+  background-color: #1E519F !important;
+  border-color: #1E519F !important;
 }
 .agree_checkbox_container {
   margin-top: 28px !important;
@@ -227,6 +230,7 @@
   line-height: 16px;
   padding-left: 16px;
   color: #999999;
+  letter-spacing: 0.7px;
 }
 
 .highlight_blue_text {
@@ -253,13 +257,25 @@
   align-items: center;
 }
 
-.btn_submit button {
+.btn_submit .btn_signup {
   width: 325px;
   height: 44px;
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
+  background-color: #1E519F !important;
+  border-color: #1E519F !important;
+}
+
+.btn_submit .btn_login {
+  width: 325px;
+  height: 44px;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  border-color: #1E519F !important;
 }
 
 .already_account {
@@ -340,7 +356,7 @@
   padding: 4px 4px;
   display: block;
   width: 100%;
-  height: 30px;
+  line-height: 48px;
   background-color: transparent;
   border: none;
   border-bottom: 1px solid #757575;
@@ -367,7 +383,7 @@
 .floating-select:focus~label{
   top: -18px;
   font-size: 14px;
-  color: #5264AE;
+  /* color: #5264AE; */
 }
 
 /* .floating-select:not([value=""]):invalid~label {
@@ -384,7 +400,7 @@
 
 .labeldisactive label{
   font-size: 14px;
-  color: #5264AE;
+  /* color: #5264AE; */
 }
 
 /* active state */
@@ -435,7 +451,7 @@
   width:100%;
 }
 
-#select_tag option{
+.floating-select:focus~ option{
   height: 48px !important;
 }
 
@@ -447,3 +463,4 @@
   width: 40px;
   text-align: center;
 }
+
